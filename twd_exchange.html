@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新台幣換算</title>
+<style>
+body {
+  font-family: system-ui, -apple-system;
+  background: #f2f2f2;
+  padding: 20px;
+}
+.container {
+  max-width: 420px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+h1 { text-align:center; }
+input, select, button {
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #007aff;
+  color: white;
+  border: none;
+}
+.result {
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>💱 新台幣換算</h1>
+  <input id="twd" type="number" value="1000">
+  <select id="currency">
+    <option value="USD">美元 USD</option>
+    <option value="JPY">日圓 JPY</option>
+    <option value="CNY">人民幣 CNY</option>
+    <option value="EUR">歐元 EUR</option>
+    <option value="HKD">港幣 HKD</option>
+    <option value="KRW">韓元 KRW</option>
+  </select>
+  <button onclick="convert()">換算</button>
+  <div class="result" id="result">—</div>
+</div>
+
+<script>
+const rates = {
+  USD: 0.031,
+  JPY: 4.85,
+  CNY: 0.225,
+  EUR: 0.029,
+  HKD: 0.243,
+  KRW: 41.2
+};
+function convert() {
+  const twd = document.getElementById("twd").value;
+  const cur = document.getElementById("currency").value;
+  document.getElementById("result").innerText =
+    `${twd} TWD = ${(twd * rates[cur]).toFixed(2)} ${cur}`;
+}
+</script>
+</body>
+</html>
